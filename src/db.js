@@ -1,9 +1,12 @@
 import pg from "pg";
 
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
+if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not set. Copy .env.example to .env and fill it in.");
 }
+// TLS is configured below, so the sslmode in Neon's URL is dropped to avoid the two settings disagreeing.
+const url = new URL(process.env.DATABASE_URL);
+url.searchParams.delete("sslmode");
+const connectionString = url.toString();
 
 // Hosted databases (Neon on Vercel) need TLS; the local PostgreSQL server does not.
 const isLocal = /@(localhost|127\.0\.0\.1)(:\d+)?\//.test(connectionString);

@@ -552,6 +552,7 @@ facilityForm.addEventListener("input", event => {
   const slot = facilityForm.querySelector(`#err-${field}`);
   if (slot) slot.textContent = "";
   event.target.removeAttribute("aria-invalid");
+  if (!facilityForm.querySelector("[aria-invalid]")) facilityError.textContent = "";
   if (field === "location") {
     const lat = Number(facilityForm.lat.value), lng = Number(facilityForm.lng.value);
     if (Number.isFinite(lat) && Number.isFinite(lng) && facilityForm.lat.value && facilityForm.lng.value) setPickMarker([lat, lng]);
