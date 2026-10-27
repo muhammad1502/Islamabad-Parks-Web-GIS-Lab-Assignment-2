@@ -1,0 +1,19 @@
+{
+  "name": "islamabad-parks-gis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Database-driven Web GIS of parks and recreational facilities in Islamabad (PostgreSQL + PostGIS, Express, Leaflet).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env server.js",
+    "db:setup": "node --env-file=.env scripts/setup-db.js",
+    "test": "node --env-file=.env --test test/"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}
